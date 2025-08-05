@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from MainApp.models import Snippet
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def index_page(request):
@@ -20,3 +21,17 @@ def snippets_page(request):
         'snippets': snippets
     }
     return render(request, 'pages/view_snippets.html', context)
+
+
+def snippets_detail(request, snippet_id: int):
+    """ Get item by id from db."""
+    try:
+        snippet = Snippet.objects.get(id=snippet_id)
+    except ObjectDoesNotExist:
+        return render(request, "errors.html", {'errors': [f'snippet with id={snippet_id} not found']})
+    else:
+        context = {
+            "pagename": 'Сниппет',
+            "snippet": snippet,
+        }
+        return render(request, "pages/snippets_detail.html", context)
