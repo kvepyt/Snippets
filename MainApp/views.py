@@ -25,13 +25,12 @@ def snippets_page(request):
 
 def snippets_detail(request, snippet_id: int):
     """ Get item by id from db."""
+    context = {'pagename': 'Просмотр Сниппета'}
     try:
         snippet = Snippet.objects.get(id=snippet_id)
     except ObjectDoesNotExist:
-        return render(request, "errors.html", {'errors': [f'snippet with id={snippet_id} not found']})
+        return render(request, "errors.html", context | {"error": f"Snippet with id={snippet_id} not found"})
     else:
-        context = {
-            "pagename": 'Сниппет',
-            "snippet": snippet,
-        }
+        context['snippet'] = snippet
+
         return render(request, "pages/snippets_detail.html", context)

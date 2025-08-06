@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
-
-{% block title %} Errors {% endblock %}
-
 {% block content %}
-    <br>
-    <br>
-    <br>
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>{{ pagename }}</h1>
+                <hr>
+            </div>
+        </div>
 
-    <h1> Ошибки </h1>
-    <br>
-    <ul>
-        {% for error in errors %}
-            <li>
+        <div class="row">
+            <div class="col">
                 <h2>{{ error }}</h2>
-            </li>
-        {% endfor %}
-    </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
