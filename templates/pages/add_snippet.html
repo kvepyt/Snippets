@@ -12,11 +12,13 @@
             <div class="col">
                 <form action="" method="post">
                     {% csrf_token %}
-                    <table>
-                        {{ form }}
-                    </table>
+                        {{ form.as_p }}
+                <div class="form-group-row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-primary btn-block" value="Создать сниппет">
+                    </div>
+                </div>
 
-                    <input type="submit" value="Submit">
                 </form>
 
             </div>
