@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from MainApp.forms import SnippetForm
 from MainApp.models import Snippet
 from django.core.exceptions import ObjectDoesNotExist
@@ -29,17 +29,20 @@ def add_snippet_page(request):
         return render(request, 'pages/add_snippet.html', context={"form": form})
     return HttpResponseNotAllowed(["POST"], "You must make POST request to add snippet.")
 
+
 def snippets_page(request):
     snippets = Snippet.objects.all()
+    sn_count = snippets.count()
     context = {
         'pagename': 'Просмотр сниппетов',
-        'snippets': snippets
+        'snippets': snippets,
+        'count': sn_count
     }
     return render(request, 'pages/view_snippets.html', context)
 
 
 def snippets_detail(request, snippet_id: int):
-    """ Get item by id from db."""
+    """ Get snippet by id from db."""
     context = {'pagename': 'Просмотр Сниппета'}
     try:
         snippet = Snippet.objects.get(id=snippet_id)
@@ -50,3 +53,26 @@ def snippets_detail(request, snippet_id: int):
 
         return render(request, "pages/snippets_detail.html", context)
 
+
+def snippets_delete(request, snippet_id: int):
+    """ Delete snippet by id from db."""
+
+    if request.method == "GET" or request.method == "POST":
+        # Найти snippet no snippet_id или вернуть ошибку 404
+        snippet = get_object_or_404(Snippet, id=snippet_id)
+        snippet.delete()  # Удаляем сниппет из базы
+    return redirect("snippets-list")
+
+
+def snippets_edit(request, snippet_id: int):
+    """ Edit snippet by id from db."""
+    pass
+
+
+"""
+    if request.method == "GET" or request.method == "POST":
+        # Найти snippet no snippet_id или вернуть ошибку 404
+        snippet = get_object_or_404(Snippet, id=snippet_id)
+        snippet.edit()  # Удаляем сниппет из базы
+    return redirect("snippets-list")
+"""
