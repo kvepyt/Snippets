@@ -54,7 +54,7 @@ def snippets_detail(request, snippet_id: int):
         return render(request, "pages/snippets_detail.html", context)
 
 
-def snippets_delete(request, snippet_id: int):
+def snippet_delete(request, snippet_id: int):
     """ Delete snippet by id from db."""
 
     if request.method == "GET" or request.method == "POST":
@@ -64,7 +64,7 @@ def snippets_delete(request, snippet_id: int):
     return redirect("snippets-list")
 
 
-def snippets_edit(request, snippet_id: int):
+def snippet_edit(request, snippet_id: int):
     """ Edit snippet by id from db."""
     pass
 
