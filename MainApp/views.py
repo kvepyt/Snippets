@@ -1,5 +1,7 @@
-from django.http import HttpResponse, HttpResponseNotAllowed
-from django.http import Http404
+# from os import name
+from django.http import HttpResponseNotAllowed
+
+# from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from MainApp.forms import SnippetForm
 from MainApp.models import Snippet
@@ -67,8 +69,16 @@ def snippet_delete(request, snippet_id: int):
 
 def snippet_edit(request, snippet_id: int):
     """Edit snippet by id from db."""
-    if request.method == "GET" or request.method == "POST":
-        # Найти snippet no snippet_id или вернуть ошибку 404
-        snippet = get_object_or_404(Snippet, id=snippet_id)
-    #        snippet.delete()  # Удаляем сниппет из базы
-    return redirect("snippets-list")
+    context = {"pagename": "Изменение Сниппета"}
+    snippet = get_object_or_404(Snippet, id=snippet_id)
+    # Создаем форму на основе данных снипета при запросе GET
+    if request.method == "GET":
+        form = SnippetForm(instance=snippet)
+        return render(request, "pages/add_snippet.html", context | {"form": form})
+    # Получаем данные из формы и на их основе обновляем сниппет, сохраняя его в БД
+    if request.method == "POST":
+        data_form = request.POST
+        snippet.name = data_form["name"]
+        snippet.code = data_form["code"]
+        snippet.save()
+        return redirect("snippets-list")  # URL для списка сниппитов

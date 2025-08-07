@@ -35,18 +35,29 @@
                         <td scope="row">{{snippet.id}}</td>
                         <td>
                             <a href= {% url "snippets-detail" snippet.id %} >{{snippet.name}}</a>
+                            &nbsp;
+                            <a href= {% url "snippet-edit" snippet.id %} >
+                                <i style="color: blue;" class="bi bi-pen"></i>
+                                </a>
+                            &nbsp;
+                                <a href= {% url "snippet-delete" snippet.id %} >
+                                <i style="color: red;" class="bi bi-trash"></i>
+                                </a>
                         </td>
+
                         <td>{{snippet.lang}}</td>
                         <td>{{snippet.creation_date | date:"d F Y H:i:s"}}</td>
                         <td>
-                            <a href= {% url "snippet-delete" snippet.id %} >
-                                <i style="color: blue;" class="bi bi-trash"></i>
-                                </a>
+                            <div style="display: flex; flex-direction: row; ">
+                                <a href="{% url "snippet-edit" snippet.id %}" class="btn btn-primary">Edit</a>
+                                &nbsp;&nbsp;
+                                <form action="{% url "snippet-delete" snippet.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
                         </td>
                         <td>
-                        <form action="{% url "snippet-delete" snippet.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Delete</button>
                         </td>
 
                     </tr>

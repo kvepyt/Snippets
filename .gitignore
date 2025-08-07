@@ -1,6 +1,7 @@
 .idea/
 .vscode/
-*venv/
+.DS_Store
+*env/
 __pycache__/
 *.py[cod]
 db.*
@@ -8,3 +9,5 @@ db.*
 *.sqlite3
 .pylintrc
 .DS_Store
+*.tmp
+*.db
