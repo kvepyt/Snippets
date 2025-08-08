@@ -22,7 +22,10 @@ def add_snippet_page(request):
     if request.method == "POST":
         form = SnippetForm(request.POST)
         if form.is_valid():
-            form.save()
+            snippet = form.save(commit=False)  # получаем экземпляр класса Snippet
+            if request.user.is_authenticated:
+                snippet.user = request.user
+                snippet.save()
             return redirect("snippets-list")  # URL для списка сниппитов
         return render(request, "pages/add_snippet.html", context={"form": form})
     return HttpResponseNotAllowed(
@@ -103,7 +106,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect(to= "home")
+    return redirect(to="home")
 
 
 #    return redirect(request.META.get("HTTP_REFERER", "/"))
