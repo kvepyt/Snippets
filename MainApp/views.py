@@ -1,11 +1,10 @@
-# from os import name
 from django.http import HttpResponseNotAllowed
+from django.contrib import auth
+from django.core.exceptions import ObjectDoesNotExist
 
-# from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from MainApp.forms import SnippetForm
 from MainApp.models import Snippet
-from django.core.exceptions import ObjectDoesNotExist
 
 
 def index_page(request):
@@ -82,3 +81,29 @@ def snippet_edit(request, snippet_id: int):
         snippet.code = data_form["code"]
         snippet.save()
         return redirect("snippets-list")  # URL для списка сниппитов
+
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        #        print("username =", username)
+        #        print("password =", password)
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+        else:
+            # Return error message
+            pass
+    return redirect("home")
+
+
+#    return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect(to= "home")
+
+
+#    return redirect(request.META.get("HTTP_REFERER", "/"))
