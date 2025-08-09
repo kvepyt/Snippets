@@ -14,6 +14,7 @@ def index_page(request):
     return render(request, "pages/index.html", context)
 
 
+@login_required
 def add_snippet_page(request):
     # Создаем пустую форму при запросе GET
     if request.method == "GET":
@@ -36,7 +37,7 @@ def add_snippet_page(request):
 
 
 def snippets_page(request):
-    snippets = Snippet.objects.all()
+    snippets = Snippet.objects.filter(public=True)
     context = {
         "pagename": "Просмотр сниппетов",
         "snippets": snippets,
@@ -73,7 +74,9 @@ def snippet_delete(request, snippet_id: int):
 
     if request.method == "GET" or request.method == "POST":
         # Найти snippet no snippet_id или вернуть ошибку 404
-        snippet = get_object_or_404(Snippet, id=snippet_id)
+        snippet = get_object_or_404(
+            Snippet.objects.filter(user=request.user), id=snippet_id
+        )
         snippet.delete()  # Удаляем сниппет из базы
     return redirect("snippets-list")
 
@@ -81,7 +84,9 @@ def snippet_delete(request, snippet_id: int):
 def snippet_edit(request, snippet_id: int):
     """Edit snippet by id from db."""
     context = {"pagename": "Изменение Сниппета"}
-    snippet = get_object_or_404(Snippet, id=snippet_id)
+    snippet = get_object_or_404(
+        Snippet.objects.filter(user=request.user), id=snippet_id
+    )
     # Создаем форму на основе данных снипета при запросе GET
     if request.method == "GET":
         form = SnippetForm(instance=snippet)
@@ -91,6 +96,7 @@ def snippet_edit(request, snippet_id: int):
         data_form = request.POST
         snippet.name = data_form["name"]
         snippet.code = data_form["code"]
+        snippet.public = data_form["public"]
         snippet.save()
         return redirect("snippets-list")  # URL для списка сниппитов
 
