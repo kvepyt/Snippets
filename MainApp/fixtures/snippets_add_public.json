@@ -1,0 +1,110 @@
+[
+{
+    "model": "MainApp.snippet",
+    "pk": 2,
+    "fields": {
+        "name": "Second Snippet",
+        "lang": "py",
+        "code": "print(\"Second\")",
+        "creation_date": "2025-08-05T18:10:28.405Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 6,
+    "fields": {
+        "name": "Snippet form 4",
+        "lang": "go",
+        "code": "func main()",
+        "creation_date": "2025-08-06T20:10:47.111Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 7,
+    "fields": {
+        "name": "Html snippet",
+        "lang": "html",
+        "code": "<head></head>",
+        "creation_date": "2025-08-06T20:49:40.845Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 8,
+    "fields": {
+        "name": "Snippet JS",
+        "lang": "js",
+        "code": "main()",
+        "creation_date": "2025-08-07T01:41:29.471Z",
+        "user": 2,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 9,
+    "fields": {
+        "name": "Snippet CPP",
+        "lang": "cpp",
+        "code": "main()",
+        "creation_date": "2025-08-07T01:51:55.073Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 10,
+    "fields": {
+        "name": "Snippet form GO",
+        "lang": "go",
+        "code": "main()",
+        "creation_date": "2025-08-07T02:21:53.971Z",
+        "user": 1,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 11,
+    "fields": {
+        "name": "Snippet form py new",
+        "lang": "ру",
+        "code": "print(\"!\")\r\nprint(\"new\")",
+        "creation_date": "2025-08-07T02:23:26.922Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 12,
+    "fields": {
+        "name": "Admin snippet",
+        "lang": "ру",
+        "code": "print('Admin')",
+        "creation_date": "2025-08-08T12:43:27.930Z",
+        "user": 1,
+        "public": false
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 13,
+    "fields": {
+        "name": "User1's snippet",
+        "lang": "go",
+        "code": "Class",
+        "creation_date": "2025-08-08T12:45:40.068Z",
+        "user": 2,
+        "public": true
+    }
+}
+]
