@@ -28,6 +28,7 @@
                         <th scope="col">Дата создания</th>
                         <th scope="col">Действия</th>
                         <th scope="col">Пользователь</th>
+                        <th scope="col">Public</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -60,6 +61,9 @@
                         </td>
                         <td>
                             {{ snippet.user.username }}
+                        </td>
+                        <td>
+                            {{snippet.status}}
                         </td>
 
                     </tr>

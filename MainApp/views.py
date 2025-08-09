@@ -1,8 +1,10 @@
 from django.http import HttpResponseNotAllowed
 from django.contrib import auth
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
+
+# from django.template import context
 from MainApp.forms import SnippetForm
 from MainApp.models import Snippet
 
@@ -39,6 +41,13 @@ def snippets_page(request):
         "pagename": "Просмотр сниппетов",
         "snippets": snippets,
     }
+    return render(request, "pages/view_snippets.html", context)
+
+
+@login_required
+def my_snippets(request):
+    snippets = Snippet.objects.filter(user=request.user)
+    context = {"pagename": "Просмотр моих сниппетов", "snippets": snippets}
     return render(request, "pages/view_snippets.html", context)
 
 
@@ -96,8 +105,11 @@ def login(request):
         if user is not None:
             auth.login(request, user)
         else:
-            # Return error message
-            pass
+            context = {
+                "pagename": "PythonBin",
+                "errors": ["Wrong username or password"],
+            }
+            return render(request, "pages/index.html", context)
     return redirect("home")
 
 
