@@ -96,9 +96,9 @@ def snippet_edit(request, snippet_id: int):
         data_form = request.POST
         snippet.name = data_form["name"]
         snippet.code = data_form["code"]
-        snippet.public = data_form["public"]
+        snippet.public = data_form.get("public", False)
         snippet.save()
-        return redirect("snippets-list")  # URL для списка сниппитов
+        return redirect("snippets-list")  # URL для списка сниппетов
 
 
 def login(request):
