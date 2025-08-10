@@ -66,6 +66,22 @@ def snippets_detail(request, snippet_id: int):
 
         return render(request, "pages/snippets_detail.html", context)
 
+def find_snippet(request, snippet_id: int):
+    """Get snippet by id from db."""
+    context = {"pagename": "Просмотр Сниппета"}
+    try:
+        snippet = Snippet.objects.get(id=snippet_id)
+    except ObjectDoesNotExist:
+        return render(
+            request,
+            "errors.html",
+            context | {"error": f"Snippet with id={snippet_id} not found"},
+        )
+    else:
+        context["snippet"] = snippet
+
+        return render(request, "pages/snippets_detail.html", context)
+
 
 def snippet_delete(request, snippet_id: int):
     """Delete snippet by id from db."""
