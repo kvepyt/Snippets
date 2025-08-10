@@ -6,9 +6,9 @@ from django.forms import (
     CharField,
     PasswordInput,
 )
-from MainApp.models import Snippet
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from MainApp.models import Comment, Snippet
 
 # Описание возможностей по настройке форм
 # https://docs.djangoproject.com/en/dev/ref/forms/widgets/#django.forms.Widget.attrs
@@ -75,3 +75,20 @@ class UserRegistrationForm(ModelForm):
         if commit:
             user.save()
         return user
+
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["text"]
+        labels = {"text": ""}
+        widgets = {
+            "text": Textarea(
+                attrs={
+                    "class": "form-control",
+                    "rows": 5,
+                    "placeholder": "Комментарий для сниппета",
+                    "style": "max-width: 300px",
+                }
+            )
+        }

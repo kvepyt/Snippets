@@ -1,9 +1,9 @@
-from django.http import HttpResponseNotAllowed
+from django.http import Http404, HttpResponseNotAllowed
 from django.contrib import auth
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render, redirect
-from MainApp.forms import SnippetForm, UserRegistrationForm
+from MainApp.forms import CommentForm, SnippetForm, UserRegistrationForm
 from MainApp.models import Snippet
 
 
@@ -50,7 +50,7 @@ def my_snippets(request):
     return render(request, "pages/view_snippets.html", context)
 
 
-def snippets_detail(request, snippet_id: int):
+def snippet_detail(request, snippet_id: int):
     """Get snippet by id from db."""
     context = {"pagename": "Просмотр Сниппета"}
     try:
@@ -63,8 +63,10 @@ def snippets_detail(request, snippet_id: int):
         )
     else:
         context["snippet"] = snippet
+        context["comment_form"] = CommentForm()
 
-        return render(request, "pages/snippets_detail.html", context)
+        return render(request, "pages/snippet_detail.html", context)
+
 
 def find_snippet(request, snippet_id: int):
     """Get snippet by id from db."""
@@ -80,7 +82,7 @@ def find_snippet(request, snippet_id: int):
     else:
         context["snippet"] = snippet
 
-        return render(request, "pages/snippets_detail.html", context)
+        return render(request, "pages/snippet_detail.html", context)
 
 
 def snippet_delete(request, snippet_id: int):
@@ -143,13 +145,26 @@ def create_user(request):
     # Создаем пустую форму при запросе GET
     if request.method == "GET":
         form = UserRegistrationForm()
-
     # Получаем данные из формыи и на их основе создаем нового пользователя, сохраняя его в БД
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("home")  # URL для списка сниппитов
-
     context["form"] = form
     return render(request, "pages/registration.html", context)
+
+
+def comment_add(request):
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            snippet_id = request.POST.get("snippet_id")
+            snippet = Snippet.objects.get(id=snippet_id)
+            comment = comment_form.save(commit=False)
+            comment.author = request.user
+            comment.snippet = snippet
+            comment.save()
+        # return redirect(f"/snippets/{snippet_id}")
+        return redirect("snippet-detail", snippet_id=snippet.id)
+    raise Http404

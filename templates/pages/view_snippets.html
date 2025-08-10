@@ -36,7 +36,7 @@
                     <tr>
                         <td scope="row">{{snippet.id}}</td>
                         <td>
-                            <a href= {% url "snippets-detail" snippet.id %} >{{snippet.name}}</a>
+                            <a href= {% url "snippet-detail" snippet.id %} >{{snippet.name}}</a>
                             &nbsp;
                             {% if snippet.user == request.user %}
                                 <a href= {% url "snippet-edit" snippet.id %} >
