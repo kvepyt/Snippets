@@ -1,0 +1,266 @@
+[
+{
+    "model": "MainApp.snippet",
+    "pk": 2,
+    "fields": {
+        "name": "Second Snippet",
+        "lang": "py",
+        "code": "print(\"Second\")",
+        "creation_date": "2025-08-05T18:10:28.405Z",
+        "user": 1,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 6,
+    "fields": {
+        "name": "Snippet form 6",
+        "lang": "go",
+        "code": "func main()",
+        "creation_date": "2025-08-06T20:10:47.111Z",
+        "user": 3,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 7,
+    "fields": {
+        "name": "Html snippet",
+        "lang": "html",
+        "code": "<head></head>",
+        "creation_date": "2025-08-06T20:49:40.845Z",
+        "user": null,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 8,
+    "fields": {
+        "name": "Snippet JS",
+        "lang": "js",
+        "code": "main()",
+        "creation_date": "2025-08-07T01:41:29.471Z",
+        "user": 2,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 9,
+    "fields": {
+        "name": "Snippet CPP",
+        "lang": "cpp",
+        "code": "main()\r\ngoto\r\nmain\r\na += b",
+        "creation_date": "2025-08-07T01:51:55.073Z",
+        "user": 3,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 10,
+    "fields": {
+        "name": "Snippet form GO",
+        "lang": "go",
+        "code": "main()",
+        "creation_date": "2025-08-07T02:21:53.971Z",
+        "user": 1,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 11,
+    "fields": {
+        "name": "Snippet form py new",
+        "lang": "ру",
+        "code": "print(\"!\")\r\nprint(\"new\")",
+        "creation_date": "2025-08-07T02:23:26.922Z",
+        "user": 2,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 12,
+    "fields": {
+        "name": "Admin snippet",
+        "lang": "ру",
+        "code": "print('Admin')",
+        "creation_date": "2025-08-08T12:43:27.930Z",
+        "user": 1,
+        "public": false
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 13,
+    "fields": {
+        "name": "User1's snippet",
+        "lang": "go",
+        "code": "Class",
+        "creation_date": "2025-08-08T12:45:40.068Z",
+        "user": 2,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 14,
+    "fields": {
+        "name": "Last python snippet number",
+        "lang": "ру",
+        "code": "<div class=\"row\">\r\n            <div class=\"col text-center\">\r\n                <h1>{{ pagename }}</h1>\r\n                <hr>\r\n            </div>\r\n        </div>",
+        "creation_date": "2025-08-10T01:33:29.023Z",
+        "user": 3,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 15,
+    "fields": {
+        "name": "Snippet form user3",
+        "lang": "js",
+        "code": "Main()",
+        "creation_date": "2025-08-10T15:29:33.894Z",
+        "user": 3,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.snippet",
+    "pk": 16,
+    "fields": {
+        "name": "New admin snippet",
+        "lang": "html",
+        "code": "<form action=\"{% url 'comment_add' %}\" method=\"POST\">\r\n      {% csrf_token %}\r\n      {{comment_form}}\r\n       <input type=\"hidden\" name=\"snippet_id\" value=\"{{snippet.id}}\"><br>\r\n       <button type=\"submit\" class='btn btn-primary'>Добавить</button>\r\n</form>",
+        "creation_date": "2025-08-10T18:31:54.925Z",
+        "user": 1,
+        "public": true
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 1,
+    "fields": {
+        "text": "Мой комментарий формы 6",
+        "creation_date": "2025-08-10T15:14:34.539Z",
+        "author": 3,
+        "snippet": 6
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 2,
+    "fields": {
+        "text": "Comment from user 3",
+        "creation_date": "2025-08-10T15:30:49.316Z",
+        "author": 3,
+        "snippet": 15
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 3,
+    "fields": {
+        "text": "Comment from user 3",
+        "creation_date": "2025-08-10T15:58:12.882Z",
+        "author": 3,
+        "snippet": 15
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 4,
+    "fields": {
+        "text": "Новый коментарий",
+        "creation_date": "2025-08-10T16:00:07.443Z",
+        "author": 3,
+        "snippet": 15
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 5,
+    "fields": {
+        "text": "Еще один",
+        "creation_date": "2025-08-10T16:05:56.886Z",
+        "author": 3,
+        "snippet": 15
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 6,
+    "fields": {
+        "text": "Корректировка",
+        "creation_date": "2025-08-10T16:12:16.598Z",
+        "author": 3,
+        "snippet": 15
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 7,
+    "fields": {
+        "text": "Без владельца",
+        "creation_date": "2025-08-10T16:16:26.862Z",
+        "author": 3,
+        "snippet": 7
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 8,
+    "fields": {
+        "text": "Это \r\nмногострочный \r\nкомментарий",
+        "creation_date": "2025-08-10T16:27:48.793Z",
+        "author": 3,
+        "snippet": 10
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 9,
+    "fields": {
+        "text": "4 строки кода",
+        "creation_date": "2025-08-10T16:47:37.752Z",
+        "author": 3,
+        "snippet": 9
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 10,
+    "fields": {
+        "text": "Нужно код вывести в несколько строк\r\nТак будет правильнее",
+        "creation_date": "2025-08-10T17:23:11.872Z",
+        "author": 3,
+        "snippet": 14
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 11,
+    "fields": {
+        "text": "Code in one row",
+        "creation_date": "2025-08-10T18:32:26.116Z",
+        "author": 1,
+        "snippet": 16
+    }
+},
+{
+    "model": "MainApp.comment",
+    "pk": 12,
+    "fields": {
+        "text": "admin`s comment",
+        "creation_date": "2025-08-10T19:16:54.600Z",
+        "author": 1,
+        "snippet": 16
+    }
+}
+]
