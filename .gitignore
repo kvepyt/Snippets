@@ -11,3 +11,4 @@ db.*
 .DS_Store
 *.tmp
 *.db
+staticfiles/
