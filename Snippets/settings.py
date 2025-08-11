@@ -25,9 +25,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECRET_KEY = "#%3rmpy6hb52y7j^tu7g*v$762rc0&f+26yy3x!j&+@s4(ndq@"
 SECRET_KEY = get_random_secret_key()
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# for Local use True
+DEBUG = True
+# for Deployment use False!
+# DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ["127.0.0.1", ".pythonanywhere.com"]
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True

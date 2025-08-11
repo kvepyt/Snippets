@@ -11,9 +11,7 @@
 
         <div class="row">
             <div class="col">
-                <p>Добро пожаловать, уважаемый пользователь!
-                <p>На этом сайте ты сможешь сохранить свои заготовки кода на различных языках программирования<br>
-                    А также делиться ими с другими пользователями...
+                <h2>Добро пожаловать {{request.user.username}}!</h2>
                 <hr>
             </div>
         </div>
@@ -28,18 +26,18 @@
             <div class="col">
                 <hr>
                 <h4>Найти сниппет по номеру</h4>
-                <form action='javascript: goToPage();' id="view_snippet_form">
-                    <div class="form-group row">
-                        <label for="snippet_id" class="col-sm-2 col-form-label col-form-label-lg">Номер:</label>
-                        <div class="col-sm-8">
-                            <input type="number" class="form-control form-control-lg" id="snippet_id"
-                                   placeholder="введите число">
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="submit"  class="form-control form-control-lg btn btn-info" value="Найти">
-                        </div>
-                    </div>
-                </form>
+<form action='javascript: goToPage();' id="view_snippet_form">
+    <div class="form-group row">
+        <label for="snippet_id" class="col-sm-2 col-form-label col-form-label-lg">Номер:</label>
+        <div class="col-sm-8">
+            <input type="number" class="form-control form-control-lg" id="snippet_id"
+                    placeholder="введите число">
+        </div>
+        <div class="col-sm-2">
+            <input type="submit"  class="form-control form-control-lg btn btn-info" value="Найти">
+        </div>
+    </div>
+</form>
                 <script type= "text/javascript">
                     function goToPage()
                     {
