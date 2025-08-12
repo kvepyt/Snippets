@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = get_random_secret_key()
 # SECURITY WARNING: don't run with debug turned on in production!
 # for Local use True
-DEBUG = True
+# DEBUG = True
 # for Deployment use False!
-# DEBUG = False
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", ".pythonanywhere.com"]
 
