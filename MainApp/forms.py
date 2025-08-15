@@ -38,9 +38,9 @@ class SnippetForm(ModelForm):
             "code": Textarea(
                 attrs={
                     "placeholder": "Код сниппета",
-                    "rows": 5,
+                    "rows": 7,
                     "class": "input-large",
-                    "style": "width: 50% ! important; resize: vertical ! important;",
+                    "style": "width: 70% ! important; resize: vertical ! important;",
                 }
             ),
             "public": CheckboxInput(attrs={"value": "True"}),

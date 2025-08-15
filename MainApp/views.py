@@ -53,8 +53,11 @@ def my_snippets(request):
 def snippet_detail(request, snippet_id: int):
     """Get snippet by id from db."""
     context = {"pagename": "Просмотр Сниппета"}
+    current_user = request.user
+
     try:
         snippet = Snippet.objects.get(id=snippet_id)
+        snip_user = snippet.user
     except ObjectDoesNotExist:
         return render(
             request,
@@ -62,27 +65,20 @@ def snippet_detail(request, snippet_id: int):
             context | {"error": f"Snippet with id={snippet_id} not found"},
         )
     else:
-        context["snippet"] = snippet
-        context["comment_form"] = CommentForm()
-
-        return render(request, "pages/snippet_detail.html", context)
-
-
-def find_snippet(request, snippet_id: int):
-    """Get snippet by id from db."""
-    context = {"pagename": "Просмотр Сниппета"}
-    try:
-        snippet = Snippet.objects.get(id=snippet_id)
-    except ObjectDoesNotExist:
-        return render(
-            request,
-            "errors.html",
-            context | {"error": f"Snippet with id={snippet_id} not found"},
-        )
-    else:
-        context["snippet"] = snippet
-
-        return render(request, "pages/snippet_detail.html", context)
+        if (not snippet.public) and (snip_user != current_user):
+            # and snippet. == request.user: and snippet.user == request.user
+            return render(
+                request,
+                "errors.html",
+                context
+                | {
+                    "error": f"Snippet  with id={snippet_id} is not available!!! Your User ({current_user}) has no rights to Private Snippet of {snip_user}!  "
+                },
+            )
+        else:
+            context["snippet"] = snippet
+            context["comment_form"] = CommentForm()
+            return render(request, "pages/snippet_detail.html", context)
 
 
 def snippet_delete(request, snippet_id: int):

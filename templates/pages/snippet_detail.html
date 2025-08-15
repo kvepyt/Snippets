@@ -52,7 +52,7 @@
                 <div class='row mt-3'>
                     <div class='col'>
                         {% if request.user.is_authenticated %} 
-                        <form action="{% url 'comment_add' %}" method="POST">
+                        <form action="{% url 'comment-add' %}" method="POST">
                             {% csrf_token %}
                             {{comment_form}}
                             <input type="hidden" name="snippet_id" value="{{snippet.id}}"><br>

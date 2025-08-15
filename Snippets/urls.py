@@ -10,7 +10,7 @@ urlpatterns = [
     path("login", views.login, name="login"),
     path("logout", views.logout, name="logout"),
     path("register", views.create_user, name="register"),
-    path("comment/add", views.comment_add, name="comment_add"),
+    path("comment/add", views.comment_add, name="comment-add"),
     path(
         "snippets/",
         include(
