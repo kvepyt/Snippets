@@ -18,6 +18,7 @@ urlpatterns = [
                 path("add", views.add_snippet_page, name="snippets-add"),
                 path("list", views.snippets_page, name="snippets-list"),
                 path("my", views.my_snippets, name="my-snippets"),
+                #                 path("<int:snippet_id>", views.snippet_detail, name="snippet-detail"),
                 path(
                     r"(?P<snippet_id>\d+)/$",
                     views.snippet_detail,
