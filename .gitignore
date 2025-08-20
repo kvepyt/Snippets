@@ -7,8 +7,6 @@ __pycache__/
 db.*
 *.sqlite
 *.sqlite3
-.pylintrc
-.DS_Store
 *.tmp
 *.db
 staticfiles/
