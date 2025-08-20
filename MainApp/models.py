@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 LANGS = {
-    ("ру", "Python"),
+    ("py", "Python"),
     ("js", "JavaScript"),
     ("go", "Golang"),
     ("cpp", "C++"),
